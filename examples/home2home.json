@@ -1,0 +1,644 @@
+{
+    "bounds": {
+        "northeast": {
+            "lat": 47.4258351,
+            "lng": 8.5645137
+        },
+        "southwest": {
+            "lat": 47.3048007,
+            "lng": 8.5187496
+        }
+    },
+    "copyrights": "Map data \u00a92021",
+    "legs": [
+        {
+            "arrival_time": {
+                "text": "4:37pm",
+                "time_zone": "Europe/Zurich",
+                "value": 1634395067
+            },
+            "departure_time": {
+                "text": "3:43pm",
+                "time_zone": "Europe/Zurich",
+                "value": 1634391797
+            },
+            "distance": {
+                "text": "19.6 km",
+                "value": 19614
+            },
+            "duration": {
+                "text": "55 mins",
+                "value": 3270
+            },
+            "end_address": "Alemannenweg 39, 8803 R\u00fcschlikon, Switzerland",
+            "end_location": {
+                "lat": 47.3095704,
+                "lng": 8.5426254
+            },
+            "start_address": "Earhart-Strasse 19, 8152 Opfikon, Switzerland",
+            "start_location": {
+                "lat": 47.4244764,
+                "lng": 8.5644636
+            },
+            "steps": [
+                {
+                    "distance": {
+                        "text": "0.3 km",
+                        "value": 348
+                    },
+                    "duration": {
+                        "text": "5 mins",
+                        "value": 301
+                    },
+                    "end_location": {
+                        "lat": 47.4257723,
+                        "lng": 8.5610583
+                    },
+                    "html_instructions": "Walk to Lindberghplatz",
+                    "polyline": {
+                        "points": "_rm`H{vgs@OGKAE?E?CFCLEZG`@APK~@CJAJARAPAJENGL@D?@@@?@?B?D?@?@?@?@?@A@?@A@ADABA??@A??@A??@C@C?A?A?A?AAA?CAEFKTCNCJAFALAZATCHALENAFEHCHEPMZOXk@nADF@BDD"
+                    },
+                    "start_location": {
+                        "lat": 47.4244764,
+                        "lng": 8.5644636
+                    },
+                    "steps": [
+                        {
+                            "distance": {
+                                "text": "23 m",
+                                "value": 23
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 18
+                            },
+                            "end_location": {
+                                "lat": 47.4246804,
+                                "lng": 8.5645092
+                            },
+                            "html_instructions": "Head <b>north</b> on <b>Earhart-Strasse</b> toward <b>Rietwiesenstrasse</b>",
+                            "polyline": {
+                                "points": "_rm`H{vgs@OGKAE?E?"
+                            },
+                            "start_location": {
+                                "lat": 47.4244764,
+                                "lng": 8.5644636
+                            },
+                            "travel_mode": "WALKING"
+                        },
+                        {
+                            "distance": {
+                                "text": "0.1 km",
+                                "value": 108
+                            },
+                            "duration": {
+                                "text": "2 mins",
+                                "value": 93
+                            },
+                            "end_location": {
+                                "lat": 47.4249871,
+                                "lng": 8.5631588
+                            },
+                            "html_instructions": "Turn <b>left</b> onto <b>Voisin-Strasse</b>",
+                            "maneuver": "turn-left",
+                            "polyline": {
+                                "points": "gsm`Hewgs@CFCLEZG`@APK~@CJAJARAPAJENGL"
+                            },
+                            "start_location": {
+                                "lat": 47.4246804,
+                                "lng": 8.5645092
+                            },
+                            "travel_mode": "WALKING"
+                        },
+                        {
+                            "distance": {
+                                "text": "0.2 km",
+                                "value": 191
+                            },
+                            "duration": {
+                                "text": "3 mins",
+                                "value": 166
+                            },
+                            "end_location": {
+                                "lat": 47.4258351,
+                                "lng": 8.5611541
+                            },
+                            "html_instructions": "At <b>Quimby-Kreisel</b>, take the <b>4th</b> exit onto <b>Talackerstrasse</b>",
+                            "maneuver": "roundabout-right",
+                            "polyline": {
+                                "points": "eum`Hwngs@@D?@@@?@?B?D?@?@?@?@?@A@?@A@ADABA??@A??@A??@C@C?A?A?A?AAA?CAEFKTCNCJAFALAZATCHALENAFEHCHEPMZOXk@nA"
+                            },
+                            "start_location": {
+                                "lat": 47.4249871,
+                                "lng": 8.5631588
+                            },
+                            "travel_mode": "WALKING"
+                        },
+                        {
+                            "distance": {
+                                "text": "26 m",
+                                "value": 26
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 24
+                            },
+                            "end_location": {
+                                "lat": 47.4257723,
+                                "lng": 8.5610583
+                            },
+                            "html_instructions": "Turn <b>left</b> to stay on <b>Talackerstrasse</b><div style=\"font-size:0.9em\">Destination will be on the left</div>",
+                            "maneuver": "turn-left",
+                            "polyline": {
+                                "points": "ozm`Hebgs@DF@BDD"
+                            },
+                            "start_location": {
+                                "lat": 47.4258351,
+                                "lng": 8.5611541
+                            },
+                            "travel_mode": "WALKING"
+                        }
+                    ],
+                    "travel_mode": "WALKING"
+                },
+                {
+                    "distance": {
+                        "text": "1.9 km",
+                        "value": 1913
+                    },
+                    "duration": {
+                        "text": "5 mins",
+                        "value": 282
+                    },
+                    "end_location": {
+                        "lat": 47.413277,
+                        "lng": 8.545978999999999
+                    },
+                    "html_instructions": "Tram towards Z\u00fcrich, Bahnhof Enge",
+                    "polyline": {
+                        "points": "_ym`Hqags@I^FBpC|BB@FFDDxFdExJhH|AlA~BzBBBj@l@NLNNFDbBzAp@p@rAlAfBdBJJ`Ax@FHn@p@x@n@@@lGnFfDtC|@p@~@h@RJERd@VFBFFDJ@D@DB^B\\?LHrBLbCJtBJjBDhAFbBBbA@X@RBJBF?BBDDFFFVLdA`@Gj@"
+                    },
+                    "start_location": {
+                        "lat": 47.4256022,
+                        "lng": 8.561052499999999
+                    },
+                    "transit_details": {
+                        "arrival_stop": {
+                            "location": {
+                                "lat": 47.413277,
+                                "lng": 8.545978999999999
+                            },
+                            "name": "Bahnhof Oerlikon Ost"
+                        },
+                        "arrival_time": {
+                            "text": "3:53pm",
+                            "time_zone": "Europe/Zurich",
+                            "value": 1634392380
+                        },
+                        "departure_stop": {
+                            "location": {
+                                "lat": 47.4256022,
+                                "lng": 8.561052499999999
+                            },
+                            "name": "Lindberghplatz"
+                        },
+                        "departure_time": {
+                            "text": "3:48pm",
+                            "time_zone": "Europe/Zurich",
+                            "value": 1634392098
+                        },
+                        "headsign": "Z\u00fcrich, Bahnhof Enge",
+                        "line": {
+                            "agencies": [
+                                {
+                                    "name": "Z\u00fcrcher Verkehrsverbund",
+                                    "phone": "011 41 43 257 48 48",
+                                    "url": "http://www.zvv.ch/"
+                                }
+                            ],
+                            "color": "#e82d89",
+                            "short_name": "10",
+                            "text_color": "#ffffff",
+                            "vehicle": {
+                                "icon": "//maps.gstatic.com/mapfiles/transit/iw2/6/ch-zurich-tram.png",
+                                "name": "Tram",
+                                "type": "TRAM"
+                            }
+                        },
+                        "num_stops": 4
+                    },
+                    "travel_mode": "TRANSIT"
+                },
+                {
+                    "distance": {
+                        "text": "0.2 km",
+                        "value": 194
+                    },
+                    "duration": {
+                        "text": "3 mins",
+                        "value": 165
+                    },
+                    "end_location": {
+                        "lat": 47.4121085,
+                        "lng": 8.5457771
+                    },
+                    "html_instructions": "Walk to Z\u00fcrich Oerlikon",
+                    "polyline": {
+                        "points": "clk`Hicds@TSHT@ARSP\\Rh@FPDLJVF?D?B?JALCB?VGDAPEPGNGEUCI"
+                    },
+                    "start_location": {
+                        "lat": 47.413298,
+                        "lng": 8.5459689
+                    },
+                    "steps": [
+                        {
+                            "distance": {
+                                "text": "29 m",
+                                "value": 29
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 30
+                            },
+                            "end_location": {
+                                "lat": 47.4130254,
+                                "lng": 8.5460684
+                            },
+                            "html_instructions": "Head <b>southeast</b> on <b>Schaffhauserstrasse</b>/<wbr/><b>Route 4</b> toward <b>Affolternstrasse</b>",
+                            "polyline": {
+                                "points": "clk`Hicds@TSHT@ARS"
+                            },
+                            "start_location": {
+                                "lat": 47.413298,
+                                "lng": 8.5459689
+                            },
+                            "travel_mode": "WALKING"
+                        },
+                        {
+                            "distance": {
+                                "text": "65 m",
+                                "value": 65
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 59
+                            },
+                            "end_location": {
+                                "lat": 47.4127065,
+                                "lng": 8.5454289
+                            },
+                            "html_instructions": "Turn <b>right</b> onto <b>Affolternstrasse</b>",
+                            "maneuver": "turn-right",
+                            "polyline": {
+                                "points": "mjk`H}cds@P\\Rh@FPDLJV"
+                            },
+                            "start_location": {
+                                "lat": 47.4130254,
+                                "lng": 8.5460684
+                            },
+                            "travel_mode": "WALKING"
+                        },
+                        {
+                            "distance": {
+                                "text": "0.1 km",
+                                "value": 100
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 76
+                            },
+                            "end_location": {
+                                "lat": 47.4121085,
+                                "lng": 8.5457771
+                            },
+                            "html_instructions": "Take the pedestrian tunnel<div style=\"font-size:0.9em\">Take the stairs</div><div style=\"font-size:0.9em\">Destination will be on the left</div>",
+                            "polyline": {
+                                "points": "mhk`H}_ds@F?D?B?JALCB?VGDAPEPGNGEUCI"
+                            },
+                            "start_location": {
+                                "lat": 47.4127065,
+                                "lng": 8.5454289
+                            },
+                            "travel_mode": "WALKING"
+                        }
+                    ],
+                    "travel_mode": "WALKING"
+                },
+                {
+                    "distance": {
+                        "text": "10.4 km",
+                        "value": 10450
+                    },
+                    "duration": {
+                        "text": "14 mins",
+                        "value": 840
+                    },
+                    "end_location": {
+                        "lat": 47.3480487,
+                        "lng": 8.533822299999999
+                    },
+                    "html_instructions": "Commuter train towards Pf\u00e4ffikon SZ",
+                    "polyline": {
+                        "points": "{bk`H_|cs@C@Lb@TfA\\rA`@`BNn@VhATv@J\\L^Xx@L\\P`@Zx@Tl@JV`A`CPf@HNTj@HRHLDJR\\LTZd@j@r@RRX^^`@r@f@PPRPZTZVf@V^R~BdAXL|@^t@Z~BhA~IfEVD|Al@~Al@`Cp@jE?|Dy@`@IDAnTmP~@s@|cA_w@|I{G~BuAbBk@dBc@fBYpBEhARXFF@bBd@rBnA|ArAjAbBdBjEl@rB`@|Bl@hE@J@F@HJvADhCQtEGnAQrBQdAeB`KwBxLWvAKp@cBjJS|@Op@Sp@Sr@Up@Qp@Kh@QbASnAUlAKj@i@fC]dB_@`B_@xBETETAD?BMp@If@Q`AGn@Ed@AHCh@ABAx@Av@@t@@r@@v@DvA@l@@p@B`ABx@@p@Dn@Fr@Fj@Lr@Jj@Nl@Pd@Rh@Rd@Tb@T\\RXVZDBh@j@hAhA`A~@hAdAnAlA~@x@n@b@DB`A`@b@Nl@Ll@Df@Bh@?b@Cb@Eb@Gb@K`@M`@O^O\\O\\Uh@_@XUJKf@i@f@k@n@_Ap@eAJQxBkDx@sAt@mAJOrAqBl@cAtAoBx@gARWv@aAl@w@nAaBLOjAaB^g@l@{@fD}Et@cA@?t@s@zAwAdBkApBqAnC}AbBq@JGFCj@SFCz@WJCpAa@l@Op@OXGp@IJAx@GnAGJAH?p@EpBO^AFArCKbACj@Cx@CvBGdBGZAbCGxAIJALEdAYRKNININKFCRMf@YxByALIRIx@[n@YHCRGXIl@O`@GVCVCh@E`@AF?L?N?X@Z@P?vBJ`@Bh@BbBBv@C~AQ`@Gh@In@IpDe@vC_@PC?F"
+                    },
+                    "start_location": {
+                        "lat": 47.411818,
+                        "lng": 8.5448031
+                    },
+                    "transit_details": {
+                        "arrival_stop": {
+                            "location": {
+                                "lat": 47.3480487,
+                                "lng": 8.533822299999999
+                            },
+                            "name": "Z\u00fcrich Wollishofen"
+                        },
+                        "arrival_time": {
+                            "text": "4:15pm",
+                            "time_zone": "Europe/Zurich",
+                            "value": 1634393700
+                        },
+                        "departure_stop": {
+                            "location": {
+                                "lat": 47.411818,
+                                "lng": 8.5448031
+                            },
+                            "name": "Z\u00fcrich Oerlikon"
+                        },
+                        "departure_time": {
+                            "text": "4:00pm",
+                            "time_zone": "Europe/Zurich",
+                            "value": 1634392800
+                        },
+                        "headsign": "Pf\u00e4ffikon SZ",
+                        "line": {
+                            "agencies": [
+                                {
+                                    "name": "Schweizerische Bundesbahnen SBB",
+                                    "phone": "011 41 900 300 300",
+                                    "url": "http://www.sbb.ch/en/timetable"
+                                }
+                            ],
+                            "color": "#193969",
+                            "short_name": "S8",
+                            "text_color": "#ffffff",
+                            "vehicle": {
+                                "icon": "//maps.gstatic.com/mapfiles/transit/iw2/6/ch-zurich-train.png",
+                                "name": "Commuter train",
+                                "type": "COMMUTER_TRAIN"
+                            }
+                        },
+                        "num_stops": 4
+                    },
+                    "travel_mode": "TRANSIT"
+                },
+                {
+                    "distance": {
+                        "text": "43 m",
+                        "value": 43
+                    },
+                    "duration": {
+                        "text": "1 min",
+                        "value": 32
+                    },
+                    "end_location": {
+                        "lat": 47.3478371,
+                        "lng": 8.534254299999999
+                    },
+                    "html_instructions": "Walk to Bhf. Wollishofen/Werft",
+                    "polyline": {
+                        "points": "gr~_Hswas@OBAQ?w@?IE@"
+                    },
+                    "start_location": {
+                        "lat": 47.3477216,
+                        "lng": 8.5338581
+                    },
+                    "steps": [
+                        {
+                            "distance": {
+                                "text": "9 m",
+                                "value": 9
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 6
+                            },
+                            "end_location": {
+                                "lat": 47.3478029,
+                                "lng": 8.5338426
+                            },
+                            "html_instructions": "Head <b>north</b>",
+                            "polyline": {
+                                "points": "gr~_Hswas@OB"
+                            },
+                            "start_location": {
+                                "lat": 47.3477216,
+                                "lng": 8.5338581
+                            },
+                            "travel_mode": "WALKING"
+                        },
+                        {
+                            "distance": {
+                                "text": "34 m",
+                                "value": 34
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 26
+                            },
+                            "end_location": {
+                                "lat": 47.3478371,
+                                "lng": 8.534254299999999
+                            },
+                            "html_instructions": "Turn <b>right</b><div style=\"font-size:0.9em\">Take the stairs</div>",
+                            "maneuver": "turn-right",
+                            "polyline": {
+                                "points": "wr~_Howas@AQ?w@?IE@"
+                            },
+                            "start_location": {
+                                "lat": 47.3478029,
+                                "lng": 8.5338426
+                            },
+                            "travel_mode": "WALKING"
+                        }
+                    ],
+                    "travel_mode": "WALKING"
+                },
+                {
+                    "distance": {
+                        "text": "6.3 km",
+                        "value": 6340
+                    },
+                    "duration": {
+                        "text": "15 mins",
+                        "value": 894
+                    },
+                    "end_location": {
+                        "lat": 47.30711549999999,
+                        "lng": 8.5420711
+                    },
+                    "html_instructions": "Bus towards R\u00fcschlikon, Park im Gr\u00fcene",
+                    "polyline": {
+                        "points": "_s~_Hezas@?OH?H?pAAx@A~AApAAb@?N?L?XALALAPAPCj@GTCFAHCFADAJCLINILGLKTO\\UNIJI@AJGJGFGLILIPKNKPO`@UHGdBgANKv@g@JGt@g@`Am@PKLGJCJGxDwAvImD~@]xAk@jBw@HEt@]l@[f@[NKLKLKLMLKJKNOnAeBh@y@JQz@sAj@{@Xe@\\e@@CBGhAcBlAeBZe@f@s@TYX]Za@V[x@}@VWLOLMLKLMPKLKJG^WVQrCkBr@e@p@e@rA}@|@m@h@_@ZSRMJIJGHEJGjAi@dC_A@?n@WxAi@LELEXK`@IdA[l@OnBk@bCiArAo@j@UxBaAJEVMTKXMbAc@hBu@JGTKXKLCHCJCj@MZI|@OnAQ\\G`@Id@MHAHEPGLGtFiDDEb@WNKVQVQNMZYNQLKDGhCiDf@q@h@u@j@w@b@k@XWVSLI\\QDARIn@O\\IbB[PRHHHHTN|AjAdAr@j@\\XPd@\\b@VJHp@b@v@p@x@r@j@d@NLDBFDJHNHND`@N`@F\\BJ@NAVATCVGNEPGPIPKNId@[`@Yr@g@NKXKh@W\\Kd@Kd@I^Er@Eh@AD?\\A|CHZDHBFBLH~@r@XRHDFBB@D@HBRBP?fA?b@AlDCPFHNAL?FCDCHGFi@\\uAjAW\\Ub@a@dAc@v@U^GHi@t@W\\]d@GHGHCHCDCHAHAN?N?R@LDXBR@\\CJGHCBEBCDCDCF?@AFAFCPCPALETABERADMb@ITQb@MXe@|@[l@A@OXGH[f@@bC?bAB`CDzAJrB@d@@JBb@@d@?DLrBRbBFj@?F?p@?@A??@A@?@?@A@?@?@?@A@?@?@?@?@@??@?@?@?@?@@@?@@@@@?@@??@@??@@?@@@?@?@?@?@?@?@A@??A@?@A?A@??A@??A?A@A?A?A@??A?A?A?Af@a@ZM@J"
+                    },
+                    "start_location": {
+                        "lat": 47.3478376,
+                        "lng": 8.5342737
+                    },
+                    "transit_details": {
+                        "arrival_stop": {
+                            "location": {
+                                "lat": 47.30711549999999,
+                                "lng": 8.5420711
+                            },
+                            "name": "R\u00fcschlikon, Loorain"
+                        },
+                        "arrival_time": {
+                            "text": "4:33pm",
+                            "time_zone": "Europe/Zurich",
+                            "value": 1634394828
+                        },
+                        "departure_stop": {
+                            "location": {
+                                "lat": 47.3478376,
+                                "lng": 8.5342737
+                            },
+                            "name": "Bhf. Wollishofen/Werft"
+                        },
+                        "departure_time": {
+                            "text": "4:18pm",
+                            "time_zone": "Europe/Zurich",
+                            "value": 1634393934
+                        },
+                        "headsign": "R\u00fcschlikon, Park im Gr\u00fcene",
+                        "line": {
+                            "agencies": [
+                                {
+                                    "name": "Z\u00fcrcher Verkehrsverbund",
+                                    "phone": "011 41 43 257 48 48",
+                                    "url": "http://www.zvv.ch/"
+                                }
+                            ],
+                            "color": "#ffffff",
+                            "short_name": "165",
+                            "text_color": "#000000",
+                            "vehicle": {
+                                "icon": "//maps.gstatic.com/mapfiles/transit/iw2/6/ch-zurich-bus.png",
+                                "name": "Bus",
+                                "type": "BUS"
+                            }
+                        },
+                        "num_stops": 14
+                    },
+                    "travel_mode": "TRANSIT"
+                },
+                {
+                    "distance": {
+                        "text": "0.3 km",
+                        "value": 326
+                    },
+                    "duration": {
+                        "text": "4 mins",
+                        "value": 239
+                    },
+                    "end_location": {
+                        "lat": 47.3095704,
+                        "lng": 8.5426254
+                    },
+                    "html_instructions": "Walk to Alemannenweg 39, 8803 R\u00fcschlikon, Switzerland",
+                    "polyline": {
+                        "points": "qtv_Hikcs@[Lo@DCAAAC?Ok@AGGk@oATg@J[?_@?K?A?MAKEECCAm@c@a@UMAMBe@N"
+                    },
+                    "start_location": {
+                        "lat": 47.30713,
+                        "lng": 8.5421333
+                    },
+                    "steps": [
+                        {
+                            "distance": {
+                                "text": "43 m",
+                                "value": 43
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 36
+                            },
+                            "end_location": {
+                                "lat": 47.30750740000001,
+                                "lng": 8.542028199999999
+                            },
+                            "html_instructions": "Head <b>north</b> on <b>Eggstrasse</b>",
+                            "polyline": {
+                                "points": "qtv_Hikcs@[Lo@D"
+                            },
+                            "start_location": {
+                                "lat": 47.30713,
+                                "lng": 8.5421333
+                            },
+                            "travel_mode": "WALKING"
+                        },
+                        {
+                            "distance": {
+                                "text": "45 m",
+                                "value": 45
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 43
+                            },
+                            "end_location": {
+                                "lat": 47.3076933,
+                                "lng": 8.5425262
+                            },
+                            "html_instructions": "At the roundabout, take the <b>1st</b> exit onto <b>Feldimoosstrasse</b>",
+                            "maneuver": "roundabout-right",
+                            "polyline": {
+                                "points": "}vv_Hujcs@CAAAC?Ok@AGGk@"
+                            },
+                            "start_location": {
+                                "lat": 47.30750740000001,
+                                "lng": 8.542028199999999
+                            },
+                            "travel_mode": "WALKING"
+                        },
+                        {
+                            "distance": {
+                                "text": "0.2 km",
+                                "value": 238
+                            },
+                            "duration": {
+                                "text": "3 mins",
+                                "value": 160
+                            },
+                            "end_location": {
+                                "lat": 47.3095704,
+                                "lng": 8.5426254
+                            },
+                            "html_instructions": "Turn <b>left</b> onto <b>Alemannenweg</b><div style=\"font-size:0.9em\">Destination will be on the left</div>",
+                            "maneuver": "turn-left",
+                            "polyline": {
+                                "points": "axv_Hymcs@oATg@J[?_@?K?A?MAKEECCAm@c@a@UMAMBe@N"
+                            },
+                            "start_location": {
+                                "lat": 47.3076933,
+                                "lng": 8.5425262
+                            },
+                            "travel_mode": "WALKING"
+                        }
+                    ],
+                    "travel_mode": "WALKING"
+                }
+            ],
+            "traffic_speed_entry": [],
+            "via_waypoint": []
+        }
+    ],
+    "overview_polyline": {
+        "points": "_rm`H{vgs@[IK?GTM|@ShBK`AGL@D@B?LCLINK@CAEAQ\\Kp@IhAQj@Sl@{@hBFJDD`@@I^xC`CjGtEvMvJbC~BjAjApF`F|DtDhB`BnGpFdFfErAt@ERd@VNJFPDd@ZbHV`FLlDD|AD^LX^TdA`@Gj@C@TSHT@ARSP\\Zz@Pd@L?`@E`AWNGEUCIx@bEC@Lb@r@zC~ArG`AtCbEfKl@jAh@z@~@fAx@`AdAx@n@f@bAn@vFfCtDdB~IfEVD|DzA`Cp@jE?~EcAtToP|eAsx@|I{G~BuAbBk@dBc@fBYpBEbBZjBf@rBnA|ArAjAbBdBjEl@rB`@|Bn@tEBPJvADhCYdHQrBQdA}EzXc@hCwBhLc@bBi@dB]zAgAlGgAlF_AzEMt@WxAYpBM|ACpBBhBJnFHlDLbBT~AZxAd@nAh@hAh@v@pCtCzGlGt@f@dBp@l@Ll@DpABfAIfASbA]|@_@fAu@d@a@nAuA`BeCtF_JbFuHrDyEhE{FtEyGv@cApCkCvE}CnC}AbBq@RKzBs@~Bq@jAW|@KhCOxDWbQk@~CIdBKrA_@b@Uz@g@`DsB`@ShBu@\\KfAYx@K`AIh@ArABtERbBBv@C`CYbLyAPC?F`AGOBAiA?IE@?SR?|HGzAA~@IrAQf@Q`Am@hBmA`Aq@`DqBzDeCv@_@pOeGxCiAtB}@bBy@rA_Av@u@xB_DfAeBdBkCvDwFrBmCvBaCz@s@~KsHvCoBl@_@jAi@dC_Ap@WnCaAdGaB|JqErAm@nEmB|@WfAWlCa@nBa@ZMbGqDpA{@f@_@j@k@RSpD{EtAmB|@cAd@]b@SbAY`Ce@z@v@bD~BdAn@fCbBlDxCh@\\p@T~@JZ?l@Ef@Mb@QhBkAbAs@bAc@bAWdAO`CI|CHZDPFlA|@b@XZJd@BjBAlDCPFHNALCLKPi@\\uAjAm@`Aa@dAc@v@]h@gBbCSb@CX?b@LxAKTIFKTKr@Oz@Oh@[x@qAfCWb@[f@@bCBdEPnEHzBLxBZnCAz@ADCJDVDFH@FAFEBI@Ef@e@ZM@JAK[Ls@BAAC?Ok@Is@wB`@{@?M?YGyA_A[@e@N"
+    },
+    "summary": "",
+    "warnings": [
+        "Walking directions are in beta. Use caution \u2013 This route may be missing sidewalks or pedestrian paths."
+    ],
+    "waypoint_order": []
+}
