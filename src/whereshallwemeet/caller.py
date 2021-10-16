@@ -7,6 +7,62 @@ from datetime import datetime as dt
 from typing import Union, Tuple, List
 
 
+def _loadFriends(friendsFile: str):
+    path = pathlib.Path(friendsFile)
+
+    if path.suffix == ".csv":
+        import csv
+
+        friends = []
+        with open(friendsFile, "r") as f:
+            csvfile = list(csv.reader(f))
+
+        # first row is header
+        header = csvfile[0]
+
+        def findCol(word):
+            shoeFits = list(
+                filter(
+                    lambda i: [word in col for col in header][i],
+                    range(len(header)),
+                )
+            )
+
+            if len(shoeFits) > 1:
+                raise ValueError(
+                    f"More than one column header contains {word}."
+                )
+            elif len(shoeFits) == 0:
+                raise ValueError(f"No column header contains keyword {word}")
+
+            return shoeFits[0]
+
+        nameCol = findCol("name")
+        addressCol = findCol("address")
+        transitCol = findCol("preferred")
+
+        for row in csvfile[1:]:
+
+            friends.append(
+                {
+                    "name": row[nameCol],
+                    "address": row[addressCol],
+                    "preferredTransitMode": row[transitCol],
+                }
+            )
+    elif (path.suffix == ".yaml") or (path.suffix == ".yml"):
+        import yaml
+
+        with open("config/friends.yaml") as f:
+            ff = yaml.load(f, Loader=yaml.FullLoader)
+
+        friends = ff["friends"]
+
+    friends = sorted(friends, key=lambda elem: elem["name"])
+
+    return friends
+
+
 def _establishConnection(configPath: str = None) -> googlemaps.client.Client:
     if (configPath is None) and (os.environ.get("APITOKEN") is None):
         raise ValueError("configPath or APITOKEN env variable must exist.")
