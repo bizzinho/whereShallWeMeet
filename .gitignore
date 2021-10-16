@@ -42,11 +42,12 @@ coverage.xml
 build/*
 dist/*
 sdist/*
-docs/api/*
-docs/_rst/*
-docs/_build/*
+docs_src/api/*
+docs_src/_rst/*
+docs_src/_build/*
 cover/*
 MANIFEST
+config/*
 
 # Per-project virtualenvs
 .venv*/
