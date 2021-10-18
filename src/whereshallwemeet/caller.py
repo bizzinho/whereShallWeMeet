@@ -8,13 +8,22 @@ from typing import Union, Tuple, List
 
 
 class WhereShallWeMeet:
-    def __init__(self, configPath: str = None):
+    def __init__(self, configPath: str = None, friendsFile: str = None):
 
         self.configPath = configPath
 
         self._gmaps = None
 
-        self.friends = None
+        self.friendsFile = friendsFile
+        self._friends = None
+
+    @property
+    def friends(self):
+
+        if self._friends is None:
+            self._friends = self._loadFriends(self.friendsFile)
+
+        return self._friends
 
     @property
     def gmaps(self):
@@ -24,7 +33,29 @@ class WhereShallWeMeet:
 
         return self._gmaps
 
-    def loadFriends(self, friendsFile: str):
+    def friendStats(self, verbose=True):
+
+        # remove people that can't host from destination
+        startAddresses = [friend["address"] for friend in self.friends]
+
+        potentialHosts = [
+            addie
+            for i, addie in enumerate(startAddresses)
+            if self.friends[i]["availableToHost"]
+        ]
+
+        DM = self._getDistMatrix(
+            startAddresses=startAddresses, destinationAddresses=potentialHosts
+        )
+
+        # return dist matrix
+        # (rows = startpoint, cols = destination)
+        self._M = self._json2Matrix(DM)
+
+        # total travel duration to destination
+        # XX
+
+    def _loadFriends(self, friendsFile: str):
         path = pathlib.Path(friendsFile)
 
         if path.suffix == ".csv":
@@ -87,6 +118,8 @@ class WhereShallWeMeet:
         # sort by name
         friends = sorted(friends, key=lambda elem: elem["name"])
 
+        self._friends = friends
+
     def _establishConnection(
         self,
         configPath: str = None,
@@ -113,7 +146,7 @@ class WhereShallWeMeet:
 
         return gmaps
 
-    def getDirections(
+    def _getDirections(
         self,
         startAddress: str,
         destinationAddress: str,
@@ -140,7 +173,7 @@ class WhereShallWeMeet:
         # output from the directions api
         return dir_results, duration
 
-    def getDistMatrix(
+    def _getDistMatrix(
         self,
         startAddresses: Union[str, List[str]],
         destinationAddresses: Union[str, List[str]],
@@ -156,6 +189,19 @@ class WhereShallWeMeet:
             departure_time=departureTime,
         )
 
-        duration = dist_results["rows"][0]["elements"][0]["duration"]["value"]
+        return dist_results
 
-        return dist_results, duration
+    def _json2Matrix(self, jsonMatrix: dict) -> List[List[int]]:
+
+        matrix = []
+
+        for row in jsonMatrix["rows"]:
+            rowList = []
+            for elem in row["elements"]:
+                if elem["status"] == "OK":
+                    rowList.append(elem["duration"]["value"])
+                else:
+                    rowList.append(0)
+            matrix.append(rowList)
+
+        return matrix
