@@ -37,11 +37,11 @@ class WhereShallWeMeet:
 
         return self._gmaps
 
-    def friendsMatrix(self, transitMode="transit", verbose=True):
+    def _friendsMatrix(self):
 
-        # remove people that can't host from destination
         startAddresses = [friend["address"] for friend in self.friends]
 
+        # remove people that can't host from destination
         potentialHosts = [
             addie
             for i, addie in enumerate(startAddresses)
@@ -80,9 +80,13 @@ class WhereShallWeMeet:
                 transitMode=transitMode,
             )
 
-        # return dist matrix
-        # (rows = startpoint, cols = destination)
-        self._M = self._json2Matrix(DM)
+    def getMatrix(self, transitMode: str = "transit"):
+        self._friendsMatrix(transitMode=transitMode)
+
+        # TODO
+        # collapse the various matrices into one
+        # the difficulty is the custom case, where the
+        # starting points are not universally the same
 
     def _loadFriends(self):
         path = pathlib.Path(self.friendsFile)
