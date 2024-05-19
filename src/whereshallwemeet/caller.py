@@ -3,6 +3,7 @@ import pathlib
 import sys
 import googlemaps
 from datetime import datetime as dt
+from math import inf
 
 from typing import Union
 
@@ -37,7 +38,7 @@ class WhereShallWeMeet:
 
         return self._gmaps
 
-    def _friendsMatrix(self):
+    def _friendsMatrix(self, transitMode):
 
         startAddresses = [friend["address"] for friend in self.friends]
 
@@ -55,6 +56,9 @@ class WhereShallWeMeet:
                     destinationAddresses=potentialHosts,
                     transitMode=mode,
                 )
+                self._starts[mode] = [
+                    friend["name"] for friend in self.friends
+                ]
         elif transitMode == "custom":
             friendModes = {
                 friend["name"]: friend["preferredTransitMode"]
@@ -73,20 +77,34 @@ class WhereShallWeMeet:
                     destinationAddresses=potentialHosts,
                     transitMode=mode,
                 )
+                self._starts[mode] = [
+                    friend
+                    for friend, friendmode in friendModes.items()
+                    if friendmode == mode
+                ]
         else:
             self._DM[transitMode] = self._getDistMatrix(
                 startAddresses=startAddresses,
                 destinationAddresses=potentialHosts,
                 transitMode=transitMode,
             )
+            self._starts[transitMode] = [
+                friend["name"] for friend in self.friends
+            ]
 
-    def getMatrix(self, transitMode: str = "transit"):
+    def getMatrix(self, transitMode: str = "transit", objective="duration"):
+
         self._friendsMatrix(transitMode=transitMode)
 
+        M = dict()
+
+        for mode in self._DM.keys():
+            M[mode] = self._json2Matrix(self._DM[mode])
         # TODO
         # collapse the various matrices into one
         # the difficulty is the custom case, where the
         # starting points are not universally the same
+        # minimization objective can be time or energy/distance
 
     def _loadFriends(self):
         path = pathlib.Path(self.friendsFile)
@@ -222,7 +240,9 @@ class WhereShallWeMeet:
         return dist_results
 
     @classmethod
-    def _json2Matrix(cls, jsonMatrix: dict) -> list[list[int]]:
+    def _json2Matrix(
+        cls, jsonMatrix: dict, objective: str = "duration"
+    ) -> list[list[int]]:
 
         matrix = []
 
@@ -231,7 +251,7 @@ class WhereShallWeMeet:
             rowList = []
             for elem in row["elements"]:
                 if elem["status"] == "OK":
-                    rowList.append(elem["duration"]["value"])
+                    rowList.append(elem[objective]["value"])
                 else:
                     rowList.append(0)
             matrix.append(rowList)
