@@ -6,6 +6,8 @@ from datetime import datetime as dt
 
 from typing import Union
 
+MODES = ("transit", "driving", "walking")
+
 
 class WhereShallWeMeet:
     def __init__(self, friendsFile: str = None, configPath: str = None):
@@ -16,6 +18,8 @@ class WhereShallWeMeet:
 
         self.friendsFile = friendsFile
         self._friends = None
+
+        self._DM = {}
 
     @property
     def friends(self):
@@ -33,7 +37,7 @@ class WhereShallWeMeet:
 
         return self._gmaps
 
-    def friendStats(self, transitMode="transit", verbose=True):
+    def friendsMatrix(self, transitMode="transit", verbose=True):
 
         # remove people that can't host from destination
         startAddresses = [friend["address"] for friend in self.friends]
@@ -44,18 +48,41 @@ class WhereShallWeMeet:
             if self.friends[i]["availableToHost"]
         ]
 
-        DM = self._getDistMatrix(
-            startAddresses=startAddresses,
-            destinationAddresses=potentialHosts,
-            transitMode=transitMode,
-        )
+        if transitMode == "best":
+            for mode in MODES:
+                self._DM[mode] = self._getDistMatrix(
+                    startAddresses=startAddresses,
+                    destinationAddresses=potentialHosts,
+                    transitMode=mode,
+                )
+        elif transitMode == "custom":
+            friendModes = {
+                friend["name"]: friend["preferredTransitMode"]
+                for friend in self.friends
+            }
+            modes = set(friendModes.values())
+            for mode in modes:
+                # calc dist matrix for everyone with this mode
+                startPoints = [
+                    startAddresses[i]
+                    for i, friend in enumerate(friendModes)
+                    if friendModes[friend] == mode
+                ]
+                self._DM[mode] = self._getDistMatrix(
+                    startAddresses=startPoints,
+                    destinationAddresses=potentialHosts,
+                    transitMode=mode,
+                )
+        else:
+            self._DM[transitMode] = self._getDistMatrix(
+                startAddresses=startAddresses,
+                destinationAddresses=potentialHosts,
+                transitMode=transitMode,
+            )
 
         # return dist matrix
         # (rows = startpoint, cols = destination)
         self._M = self._json2Matrix(DM)
-
-        # total travel duration to destination
-        # XX
 
     def _loadFriends(self):
         path = pathlib.Path(self.friendsFile)
@@ -131,7 +158,7 @@ class WhereShallWeMeet:
             # user passes apitoken via config file
 
             # add parent path to path
-            path = pathlib.Path(configPath)
+            path = pathlib.Path(self.configPath)
             sys.path.append(str(path.parent.absolute()))
 
             # import module (infer module name from filename)
@@ -190,7 +217,8 @@ class WhereShallWeMeet:
 
         return dist_results
 
-    def _json2Matrix(self, jsonMatrix: dict) -> list[list[int]]:
+    @classmethod
+    def _json2Matrix(cls, jsonMatrix: dict) -> list[list[int]]:
 
         matrix = []
 
