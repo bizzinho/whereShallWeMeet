@@ -4,11 +4,11 @@ import sys
 import googlemaps
 from datetime import datetime as dt
 
-from typing import Union, Tuple, List
+from typing import Union, Optional
 
 
 class WhereShallWeMeet:
-    def __init__(self, configPath: str = None, friendsFile: str = None):
+    def __init__(self, friendsFile: str = None, configPath: str = None):
 
         self.configPath = configPath
 
@@ -21,7 +21,7 @@ class WhereShallWeMeet:
     def friends(self):
 
         if self._friends is None:
-            self._friends = self._loadFriends(self.friendsFile)
+            self._loadFriends()
 
         return self._friends
 
@@ -55,14 +55,14 @@ class WhereShallWeMeet:
         # total travel duration to destination
         # XX
 
-    def _loadFriends(self, friendsFile: str):
-        path = pathlib.Path(friendsFile)
+    def _loadFriends(self):
+        path = pathlib.Path(self.friendsFile)
 
         if path.suffix == ".csv":
             import csv
 
             friends = []
-            with open(friendsFile, "r") as f:
+            with open(self.friendsFile, "r") as f:
                 csvfile = list(csv.reader(f))
 
             # first row is header
@@ -107,7 +107,7 @@ class WhereShallWeMeet:
         elif (path.suffix == ".yaml") or (path.suffix == ".yml"):
             import yaml
 
-            with open(friendsFile, "r") as f:
+            with open(self.friendsFile, "r") as f:
                 ff = yaml.load(f, Loader=yaml.FullLoader)
 
             friends = ff["friends"]
@@ -122,10 +122,10 @@ class WhereShallWeMeet:
 
     def _establishConnection(
         self,
-        configPath: str = None,
+        configPath: Optional[str] = None,
     ) -> googlemaps.client.Client:
-        if (configPath is None) and (os.environ.get("APITOKEN") is None):
-            raise ValueError("configPath or APITOKEN env variable must exist.")
+        if (configPath is None) and (os.environ.get("TOKEN") is None):
+            raise ValueError("configPath or TOKEN env variable must exist.")
         elif configPath is not None:
             # user passes apitoken via config file
 
@@ -137,9 +137,9 @@ class WhereShallWeMeet:
             cfg = __import__(path.stem)
 
             apitoken = cfg.apitoken
-        elif os.environ.get("APITOKEN") is not None:
+        elif os.environ.get("TOKEN") is not None:
             # user passes apitoken via env variable
-            apitoken = os.environ.get("APITOKEN")
+            apitoken = os.environ.get("TOKEN")
 
         # establish connection
         gmaps = googlemaps.Client(key=apitoken)
@@ -153,7 +153,7 @@ class WhereShallWeMeet:
         transitMode: str = "transit",
         departureTime: Union[str, dt] = dt.now(),
         configPath: str = None,
-    ) -> Tuple[dict, int]:
+    ) -> tuple[dict, int]:
 
         # Geocoding an address
         # geocode_start = gmaps.geocode(startAddress)
@@ -175,12 +175,12 @@ class WhereShallWeMeet:
 
     def _getDistMatrix(
         self,
-        startAddresses: Union[str, List[str]],
-        destinationAddresses: Union[str, List[str]],
+        startAddresses: Union[str, list[str]],
+        destinationAddresses: Union[str, list[str]],
         transitMode: str = "transit",
         departureTime: Union[str, dt] = dt.now(),
         configPath: str = None,
-    ) -> Tuple[dict, int]:
+    ) -> tuple[dict, int]:
 
         dist_results = self.gmaps.distance_matrix(
             startAddresses,
@@ -191,7 +191,7 @@ class WhereShallWeMeet:
 
         return dist_results
 
-    def _json2Matrix(self, jsonMatrix: dict) -> List[List[int]]:
+    def _json2Matrix(self, jsonMatrix: dict) -> list[list[int]]:
 
         matrix = []
 
