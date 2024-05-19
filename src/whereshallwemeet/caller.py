@@ -4,7 +4,7 @@ import sys
 import googlemaps
 from datetime import datetime as dt
 
-from typing import Union, Optional
+from typing import Union
 
 
 class WhereShallWeMeet:
@@ -29,11 +29,11 @@ class WhereShallWeMeet:
     def gmaps(self):
 
         if self._gmaps is None:
-            self._gmaps = self._establishConnection(self.configPath)
+            self._establishConnection()
 
         return self._gmaps
 
-    def friendStats(self, verbose=True):
+    def friendStats(self, transitMode="transit", verbose=True):
 
         # remove people that can't host from destination
         startAddresses = [friend["address"] for friend in self.friends]
@@ -45,7 +45,9 @@ class WhereShallWeMeet:
         ]
 
         DM = self._getDistMatrix(
-            startAddresses=startAddresses, destinationAddresses=potentialHosts
+            startAddresses=startAddresses,
+            destinationAddresses=potentialHosts,
+            transitMode=transitMode,
         )
 
         # return dist matrix
@@ -122,11 +124,10 @@ class WhereShallWeMeet:
 
     def _establishConnection(
         self,
-        configPath: Optional[str] = None,
     ) -> googlemaps.client.Client:
-        if (configPath is None) and (os.environ.get("TOKEN") is None):
+        if (self.configPath is None) and (os.environ.get("TOKEN") is None):
             raise ValueError("configPath or TOKEN env variable must exist.")
-        elif configPath is not None:
+        elif self.configPath is not None:
             # user passes apitoken via config file
 
             # add parent path to path
@@ -144,7 +145,7 @@ class WhereShallWeMeet:
         # establish connection
         gmaps = googlemaps.Client(key=apitoken)
 
-        return gmaps
+        self._gmaps = gmaps
 
     def _getDirections(
         self,
@@ -152,7 +153,6 @@ class WhereShallWeMeet:
         destinationAddress: str,
         transitMode: str = "transit",
         departureTime: Union[str, dt] = dt.now(),
-        configPath: str = None,
     ) -> tuple[dict, int]:
 
         # Geocoding an address
@@ -179,7 +179,6 @@ class WhereShallWeMeet:
         destinationAddresses: Union[str, list[str]],
         transitMode: str = "transit",
         departureTime: Union[str, dt] = dt.now(),
-        configPath: str = None,
     ) -> tuple[dict, int]:
 
         dist_results = self.gmaps.distance_matrix(
@@ -195,6 +194,7 @@ class WhereShallWeMeet:
 
         matrix = []
 
+        # returns a #Start x #Destination matrix
         for row in jsonMatrix["rows"]:
             rowList = []
             for elem in row["elements"]:
