@@ -286,6 +286,11 @@ class WhereShallWeMeet:
 
         return dist_results
 
+    def _getLocation(self, addresses):
+        locations = [self.gmaps.geolocate(addy) for addy in addresses]
+
+        return locations
+
     @classmethod
     def _json2Matrix(
         cls, jsonMatrix: dict, objective: str = "duration"

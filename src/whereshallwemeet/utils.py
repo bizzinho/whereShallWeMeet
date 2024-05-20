@@ -1,5 +1,5 @@
 import datetime
-
+import plotly.express as px
 
 def onDay(date, day=2, hour=18):
     """
@@ -18,3 +18,8 @@ def onDay(date, day=2, hour=18):
 
 def argmin(a):
     return min(range(len(a)), key=lambda x: a[x])
+
+def plotAddresses(lon, lat):
+    fig = px.scatter_mapbox(lat, lon,
+                        mapbox_style="carto-positron")
+    fig.show()
