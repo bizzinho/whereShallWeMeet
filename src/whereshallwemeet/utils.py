@@ -1,5 +1,7 @@
 import datetime
 import plotly.express as px
+from scipy.spatial import ConvexHull
+import numpy as np
 
 def onDay(date, day=2, hour=18):
     """
@@ -23,3 +25,10 @@ def plotAddresses(lon, lat):
     fig = px.scatter_mapbox(lat, lon,
                         mapbox_style="carto-positron")
     fig.show()
+
+def convexArea(lon, lat):
+    h = ConvexHull(list(zip(lon, lat)))
+
+    polygon = [(lon[s[0]], lat[s[1]]) for s in h.vertices]
+
+    return polygon
