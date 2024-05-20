@@ -48,7 +48,10 @@ def plotConvexHull(polygon, bbox=False, samples = None):
         fig.add_trace(f2.data[0])
     fig.update_layout(
         mapbox = {
-            'style': "carto-positron"},
+            'style': "carto-positron",
+            "center": go.layout.mapbox.Center(lon=np.mean(lon), 
+            lat=np.mean(lat)),
+            "zoom":8},
         showlegend = False)
     fig.show()
 
@@ -69,3 +72,10 @@ def getBbox(lon, lat):
     (max(lon), max(lat)),
     (min(lon), max(lat)),
     (min(lon), min(lat))]
+
+def closestCity(samples):
+    # df_cities = pd.read_csv("geoInfo/ch.csv")
+    df_cities = pd.read_csv("geoInfo/swisstopo_towns.csv").rename(columns={"Ortschaftsname":"city","N":"lat", "E":"lng"})
+    cities = list(zip(df_cities.lng, df_cities.lat))
+    closest = [np.argmin(np.linalg.norm(s-cities, axis=1)) for s in samples]
+    return set([df_cities.iloc[c]["city"] for c in closest])
