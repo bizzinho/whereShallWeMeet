@@ -9,7 +9,8 @@ from .utils import onDay, argmin
 
 from typing import Union
 
-MODES = ("transit", "driving", "walking")
+MODES = ("transit", "driving")
+# "walking" -> if walking is a viable option, usually suggested when picking transit
 
 
 class WhereShallWeMeet:
@@ -45,7 +46,7 @@ class WhereShallWeMeet:
 
         return self._gmaps
 
-    def _friendsMatrix(self, transitMode: str, departureTime: dt):
+    def _friendsMatrix(self, transitMode: str, departureTime: dt, force=False):
 
         startAddresses = [friend["address"] for friend in self.friends]
 
@@ -58,15 +59,16 @@ class WhereShallWeMeet:
 
         if transitMode == "best":
             for mode in MODES:
-                self._DM[mode] = self._getDistMatrix(
-                    startAddresses=startAddresses,
-                    destinationAddresses=potentialHosts,
-                    transitMode=mode,
-                    departureTime=departureTime,
-                )
-                self._starts[mode] = [
-                    friend["name"] for friend in self.friends
-                ]
+                if (mode not in self._DM.keys()) or force:
+                    self._DM[mode] = self._getDistMatrix(
+                        startAddresses=startAddresses,
+                        destinationAddresses=potentialHosts,
+                        transitMode=mode,
+                        departureTime=departureTime,
+                    )
+                    self._starts[mode] = [
+                        friend["name"] for friend in self.friends
+                    ]
         elif transitMode == "custom":
             friendModes = {
                 friend["name"]: friend["preferredTransitMode"]
@@ -74,44 +76,48 @@ class WhereShallWeMeet:
             }
             modes = set(friendModes.values())
             for mode in modes:
-                # calc dist matrix for everyone with this mode
-                startPoints = [
-                    startAddresses[i]
-                    for i, friend in enumerate(friendModes)
-                    if friendModes[friend] == mode
-                ]
-                self._DM[mode] = self._getDistMatrix(
-                    startAddresses=startPoints,
+                if (mode not in self._DM.keys()) or force:
+                    # calc dist matrix for everyone with this mode
+                    startPoints = [
+                        startAddresses[i]
+                        for i, friend in enumerate(friendModes)
+                        if friendModes[friend] == mode
+                    ]
+                    self._DM[mode] = self._getDistMatrix(
+                        startAddresses=startPoints,
+                        destinationAddresses=potentialHosts,
+                        transitMode=mode,
+                        departureTime=departureTime,
+                    )
+                    self._starts[mode] = [
+                        friend
+                        for friend, friendmode in friendModes.items()
+                        if friendmode == mode
+                    ]
+        else:
+            if (transitMode not in self._DM.keys()) or force:
+                self._DM[transitMode] = self._getDistMatrix(
+                    startAddresses=startAddresses,
                     destinationAddresses=potentialHosts,
-                    transitMode=mode,
+                    transitMode=transitMode,
                     departureTime=departureTime,
                 )
-                self._starts[mode] = [
-                    friend
-                    for friend, friendmode in friendModes.items()
-                    if friendmode == mode
+                self._starts[transitMode] = [
+                    friend["name"] for friend in self.friends
                 ]
-        else:
-            self._DM[transitMode] = self._getDistMatrix(
-                startAddresses=startAddresses,
-                destinationAddresses=potentialHosts,
-                transitMode=transitMode,
-                departureTime=departureTime,
-            )
-            self._starts[transitMode] = [
-                friend["name"] for friend in self.friends
-            ]
 
     def getMatrix(
         self,
         transitMode: str = "transit",
         departureTime=onDay(dt.now()),
         objective="duration",
+        force=False,
     ):
 
-        self._friendsMatrix(
-            transitMode=transitMode, departureTime=departureTime
-        )
+        if (len(self._DM.keys()) == 0) or force:
+            self._friendsMatrix(
+                transitMode=transitMode, departureTime=departureTime
+            )
 
         modes = tuple(self._DM.keys())
         M0 = self._json2Matrix(self._DM[modes[0]])
