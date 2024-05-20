@@ -5,6 +5,8 @@ import googlemaps
 from datetime import datetime as dt
 from math import inf
 
+from .utils import onDay, argmin
+
 from typing import Union
 
 MODES = ("transit", "driving", "walking")
@@ -21,6 +23,7 @@ class WhereShallWeMeet:
         self._friends = None
 
         self._DM = {}
+        self._starts = {}
 
     @property
     def friends(self):
@@ -31,6 +34,10 @@ class WhereShallWeMeet:
         return self._friends
 
     @property
+    def friendNames(self):
+        return [friend["name"] for friend in self.friends]
+
+    @property
     def gmaps(self):
 
         if self._gmaps is None:
@@ -38,7 +45,7 @@ class WhereShallWeMeet:
 
         return self._gmaps
 
-    def _friendsMatrix(self, transitMode):
+    def _friendsMatrix(self, transitMode: str, departureTime: dt):
 
         startAddresses = [friend["address"] for friend in self.friends]
 
@@ -55,6 +62,7 @@ class WhereShallWeMeet:
                     startAddresses=startAddresses,
                     destinationAddresses=potentialHosts,
                     transitMode=mode,
+                    departureTime=departureTime,
                 )
                 self._starts[mode] = [
                     friend["name"] for friend in self.friends
@@ -76,6 +84,7 @@ class WhereShallWeMeet:
                     startAddresses=startPoints,
                     destinationAddresses=potentialHosts,
                     transitMode=mode,
+                    departureTime=departureTime,
                 )
                 self._starts[mode] = [
                     friend
@@ -87,24 +96,56 @@ class WhereShallWeMeet:
                 startAddresses=startAddresses,
                 destinationAddresses=potentialHosts,
                 transitMode=transitMode,
+                departureTime=departureTime,
             )
             self._starts[transitMode] = [
                 friend["name"] for friend in self.friends
             ]
 
-    def getMatrix(self, transitMode: str = "transit", objective="duration"):
+    def getMatrix(
+        self,
+        transitMode: str = "transit",
+        departureTime=onDay(dt.now()),
+        objective="duration",
+    ):
 
-        self._friendsMatrix(transitMode=transitMode)
+        self._friendsMatrix(
+            transitMode=transitMode, departureTime=departureTime
+        )
 
-        M = dict()
+        modes = tuple(self._DM.keys())
+        M0 = self._json2Matrix(self._DM[modes[0]])
+        nFriends = len(self.friendNames)
+        nDestinations = len(M0[0])
+        depth = (
+            3 if (transitMode == "custom") or (transitMode == "best") else 1
+        )
 
-        for mode in self._DM.keys():
-            M[mode] = self._json2Matrix(self._DM[mode])
-        # TODO
-        # collapse the various matrices into one
-        # the difficulty is the custom case, where the
-        # starting points are not universally the same
-        # minimization objective can be time or energy/distance
+        Mfull = [
+            [[-1 for _ in range(depth)] for _ in range(nDestinations)]
+            for _ in range(nFriends)
+        ]
+
+        for k, mode in enumerate(self._DM.keys()):
+            M = self._json2Matrix(self._DM[mode], objective=objective)
+
+            for i, name in enumerate(self.friendNames):
+                for j in range(nDestinations):
+                    if name in self._starts[mode]:
+                        Mfull[i][j][k] = M[i][j]
+                    else:
+                        Mfull[i][j][k] = inf
+
+        bestmode = [
+            ["NONE" for _ in range(nDestinations)] for _ in range(nFriends)
+        ]
+        Mbest = [[-1 for _ in range(nDestinations)] for _ in range(nFriends)]
+        for i in range(nFriends):
+            for j in range(nDestinations):
+                bestmode[i][j] = modes[argmin(Mfull[i][j])]
+                Mbest[i][j] = min(Mfull[i][j])
+
+        return Mbest, bestmode
 
     def _loadFriends(self):
         path = pathlib.Path(self.friendsFile)
@@ -201,7 +242,7 @@ class WhereShallWeMeet:
         startAddress: str,
         destinationAddress: str,
         transitMode: str = "transit",
-        departureTime: Union[str, dt] = dt.now(),
+        departureTime: Union[str, dt] = onDay(dt.now()),
     ) -> tuple[dict, int]:
 
         # Geocoding an address
@@ -227,7 +268,7 @@ class WhereShallWeMeet:
         startAddresses: Union[str, list[str]],
         destinationAddresses: Union[str, list[str]],
         transitMode: str = "transit",
-        departureTime: Union[str, dt] = dt.now(),
+        departureTime: Union[str, dt] = onDay(dt.now()),
     ) -> tuple[dict, int]:
 
         dist_results = self.gmaps.distance_matrix(
